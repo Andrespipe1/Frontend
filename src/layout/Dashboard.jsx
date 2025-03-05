@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import { Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
+import FormularioCliente from "../componets/FormularioCliente";
 
 const Dashboard = () => {
     const location = useLocation();
@@ -25,17 +26,17 @@ const Dashboard = () => {
                 <hr className='my-5 border-gray-300' />
                 <ul className='space-y-4'>
                     <li className='text-center'>
-                        <Link to='/dashboard/clientes' className={`${urlActual === '/dashboard/clientes' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
+                        <Link to='/dashboard/clientes' className={`${urlActual === '/dashboard/cliente' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
                             Clientes
                         </Link>
                     </li>
                     <li className='text-center'>
-                        <Link to='/dashboard/vehiculos' className={`${urlActual === '/dashboard/vehiculos' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
+                        <Link to='/dashboard/vehiculo' className={`${urlActual === '/dashboard/vehiculo' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
                            Vehiculos
                         </Link>
                     </li>
                     <li className='text-center'>
-                        <Link to='/dashboard/reservas' className={`${urlActual === '/dashboard/reservas' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
+                        <Link to='/dashboard/reserva' className={`${urlActual === '/dashboard/reservas' ? 'bg-purple-700 text-white' : 'text-gray-600'} text-xl block py-3 rounded-lg hover:bg-purple-200`}>
                             Reservas
                         </Link>
                     </li>
@@ -74,48 +75,24 @@ const Dashboard = () => {
                 {/* Content */}
                 <div className='overflow-y-scroll px-20'>
                     <h1 className='text-4xl font-bold text-gray-800 mb-6'>Panel de Control</h1>
-                    <p className='text-gray-500 mb-6'>Bienvenido de vuelta. Aquí está un resumen de tu salud.</p>
+                    
+                    <div>
+                <h1 className='font-black text-4xl text-gray-500'>Clientes</h1>
+                <hr className='my-4' />
+                <p className='mb-8'>Este módulo te permite registrar clientes</p>
+            </div>
 
-                    <div className='grid grid-cols-4 gap-4 mb-6'>
-                        <div className='bg-white shadow-md rounded-lg p-4'>
-                            <p className='text-sm text-gray-500'>Frecuencia Cardíaca</p>
-                            <h2 className='text-2xl font-bold'>72 BPM</h2>
-                            <p className='text-xs text-gray-400'>Último registro</p>
-                        </div>
-                        <div className='bg-white shadow-md rounded-lg p-4'>
-                            <p className='text-sm text-gray-500'>Actividad Física</p>
-                            <h2 className='text-2xl font-bold'>2,345 pasos</h2>
-                            <p className='text-xs text-gray-400'>Hoy</p>
-                        </div>
-                        <div className='bg-white shadow-md rounded-lg p-4'>
-                            <p className='text-sm text-gray-500'>Nivel de Estrés</p>
-                            <h2 className='text-2xl font-bold'>Bajo</h2>
-                            <p className='text-xs text-gray-400'>Basado en actividad</p>
-                        </div>
-                        <div className='bg-white shadow-md rounded-lg p-4'>
-                            <p className='text-sm text-gray-500'>Peso</p>
-                            <h2 className='text-2xl font-bold'>75 kg</h2>
-                            <p className='text-xs text-gray-400'>Última medición</p>
-                        </div>
-                    </div>
+            <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
+                <div className='w-full md:w-1/2'>
+                    {/* Pasa los datos del cliente al formulario */}
+                    <FormularioCliente/>
+                </div>
+                <div className='w-full md:w-1/2'>
+                    {/* Aquí puedes mostrar más información */}
+                </div>
+            </div>
+                        
 
-                    <div className='grid grid-cols-2 gap-6'>
-                        <div className='bg-white shadow-md rounded-lg p-6'>
-                            <h3 className='text-xl font-semibold mb-4'>Tendencias de Salud</h3>
-                            <p className='text-sm text-gray-400'>Gráfico de tendencias (Próximamente)</p>
-                        </div>
-                        <div className='bg-white shadow-md rounded-lg p-6'>
-                            <h3 className='text-xl font-semibold mb-4'>Recomendaciones</h3>
-                            <div className='mb-4'>
-                                <p className='font-medium'>Gestión del Estrés</p>
-                                <p className='text-sm text-gray-500'>Considere tomar descansos regulares durante el día</p>
-                            </div>
-                            <div>
-                                <p className='font-medium'>Actividad Física</p>
-                                <p className='text-sm text-gray-500'>Intenta caminar 30 minutos más hoy</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Footer */}

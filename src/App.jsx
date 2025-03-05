@@ -5,13 +5,12 @@ import Login from './paginas/Login'
 import { LandinPage } from './paginas/LandinPage'
 import { NotFound } from './paginas/NotFound'
 import Dashboard from './layout/Dashboard'
-import Visualizar from './paginas/Visualizar'
 import Actualizar from './paginas/Actualizar'
 import { AuthProvider } from './context/AuthProvider'
-import { PrivateRoute } from './routes/PrivateRoute'
-import { TratamientosProvider } from './context/TratamientosProvider'
-import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 import Cliente from './paginas/Clientes'
+import PrivateRoute from './routes/PrivateRoute'
+import Vehiculo from './paginas/Vehiculos'
+
 
 
 
@@ -21,7 +20,6 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
-        <TratamientosProvider>
           <Routes>
 
             <Route index element={<LandinPage />} />
@@ -36,12 +34,11 @@ function App() {
               <PrivateRoute>
                 <Routes>
                   <Route element={<Dashboard />}>
+                    <Route index/>
                     
                     <Route path='clientes' element={<Cliente />} />
-                    <Route path='vehiculo' element={<Visualizar />} />
-                    <Route path='reserva' element={
-                      <PrivateRouteWithRole></PrivateRouteWithRole>
-                      } />
+                    <Route path='vehiculo' element={<Vehiculo />} />
+                    <Route path='reserva' element={<Vehiculo/>} />
                     <Route path='actualizar/:id' element={<Actualizar />} />
                   </Route>
                 </Routes>
@@ -49,7 +46,6 @@ function App() {
             } />
 
           </Routes>
-          </TratamientosProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

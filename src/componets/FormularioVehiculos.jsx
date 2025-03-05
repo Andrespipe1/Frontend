@@ -2,8 +2,9 @@ import { useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Mensaje from "./Alertas/Mensaje";
+import Vehiculo from "../paginas/Vehiculos";
 
-export const FormularioVehiculo = ({vehiculo}) => {
+const FormularioVehiculo = ({vehiculo}) => {
 
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState({})
@@ -12,7 +13,7 @@ export const FormularioVehiculo = ({vehiculo}) => {
         modelo: vehiculo?.modelo ||"",
         anio: vehiculo?.anio ??"",
         placa: vehiculo?.placa ??"",
-        color:  new Date(vehiculo?.color).toLocaleDateString('en-CA', {timeZone: 'UTC'}) || "",
+        color:  vehiculo?.color ??"",
         tipo_vehiculo: vehiculo?.tipo_vehiculo ??"",
         kilometraje: vehiculo?.kilometraje ??"",
         descripcion: vehiculo?.descripcion ??"",
@@ -29,7 +30,7 @@ export const FormularioVehiculo = ({vehiculo}) => {
 
         if (vehiculo?._id) {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculo/actualizar/${vehiculo?._id}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/actualizar-vehiculo/${vehiculo?._id}`
             const options = {
                 headers: {
                     method: 'PUT',
@@ -38,12 +39,12 @@ export const FormularioVehiculo = ({vehiculo}) => {
                 }
             }
             await axios.put(url, form, options)
-            navigate('/dashboard/listar')
+            navigate('/dashboard/vehiculo')
         }
         else {
         try {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/vehiculo/registro`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/registrar-vehiculo`
             const options={
                 headers: {
                     'Content-Type': 'application/json',
@@ -191,3 +192,4 @@ export const FormularioVehiculo = ({vehiculo}) => {
         </form>
     )
 }
+export default FormularioVehiculo

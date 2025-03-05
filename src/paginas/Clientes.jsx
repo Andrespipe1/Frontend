@@ -1,7 +1,4 @@
 import FormularioCliente from "../componets/FormularioCliente";
-import AuthContext from "../context/AuthProvider";
-import { useContext, useState, useEffect } from "react";
-import axios from "axios";
 
 const Clientes = () => {
 
@@ -16,7 +13,7 @@ const Clientes = () => {
             <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
                 <div className='w-full md:w-1/2'>
                     {/* Pasa los datos del cliente al formulario */}
-                    <FormularioCliente clientes={clientes} />
+                    <FormularioCliente/>
                 </div>
                 <div className='w-full md:w-1/2'>
                     {/* Aquí puedes mostrar más información */}

@@ -8,7 +8,7 @@ const FormularioCliente = ({clientes}) => {
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState({})
     const [form, setform] = useState({
-        cedula: clientes?.cedula ??"",
+        cedula: clientes?.cedula ||"",
         nombre: clientes?.nombre ??"",
         apellido: clientes?.apellido ??"",
         ciudad: clientes?.ciudad ||"",
@@ -29,7 +29,7 @@ const FormularioCliente = ({clientes}) => {
 
         if (clientes?._id) {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/clientes/actualizar/${clientes?._id}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/actualizar-clientes/${clientes?._id}`
             const options = {
                 headers: {
                     method: 'PUT',
@@ -43,7 +43,7 @@ const FormularioCliente = ({clientes}) => {
         else {
         try {
             const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/clientes/registro`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/registrar-cliente`
             const options={
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const FormularioCliente = ({clientes}) => {
             await axios.post(url,form,options)
 						setMensaje({ respuesta:"clientes registrado con exito", tipo: true })
             setTimeout(() => {
-                navigate('/dashboard/listar');
+                navigate('/dashboard');
             }, 3000);
         } catch (error) {
 						setMensaje({ respuesta: error.response.data.msg, tipo: false })
@@ -79,7 +79,7 @@ const FormularioCliente = ({clientes}) => {
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='170000000'
                     name='cedula'
-                    value={form.nombre || ""}
+                    value={form.cedula || ""}
                     onChange={handleChange}
                 />
             </div>
@@ -91,7 +91,7 @@ const FormularioCliente = ({clientes}) => {
                     id='nombre'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='nombre¿'
+                    placeholder='nombre'
                     name='nombre'
                     value={form.nombre || ""}
                     onChange={handleChange}
@@ -107,7 +107,7 @@ const FormularioCliente = ({clientes}) => {
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='Apellido'
                     name='apellido'
-                    vavalue={form.apellido}
+                    vavalue={form.apellido || ""}
                     onChange={handleChange}
                 />
             </div>
@@ -117,11 +117,11 @@ const FormularioCliente = ({clientes}) => {
                     className='text-gray-700 uppercase font-bold text-sm'>Ciudad: </label>
                 <input
                     id='ciudad'
-                    type="number"
+                    type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='ciudad'
                     name='ciudad'
-                    value={form.ciudad}
+                    value={form.ciudad || ""}
                     onChange={handleChange}
                 />
             </div>
@@ -147,7 +147,7 @@ const FormularioCliente = ({clientes}) => {
                     id='direccion'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='Ingrese los síntomas de la mascota'
+                    placeholder='Direccion'
                     name='direccion'
                     value={form.direccion}
                     onChange={handleChange}
@@ -159,11 +159,11 @@ const FormularioCliente = ({clientes}) => {
                     htmlFor='convencional:'
                     className='text-gray-700 uppercase font-bold text-sm'>Convencional: </label>
                 <input
-                    id='convencional'
-                    type="number"
+                    id='telefono'
+                    type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='Telf'
-                    name='convencional'
+                    name='telefono'
                     value={form.telefono}
                     onChange={handleChange}
                 />
@@ -174,7 +174,7 @@ const FormularioCliente = ({clientes}) => {
                     className='text-gray-700 uppercase font-bold text-sm'>Fecha nacimiento: </label>
                 <textarea
                     id='fecha_nacimiento'
-                    type="text"
+                    type="date"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='fecha_nacimiento'
                     name='fecha_nacimiento'
