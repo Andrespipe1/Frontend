@@ -36,6 +36,7 @@ function App() {
               <PrivateRoute>
                 <Routes>
                   <Route element={<Dashboard />}>
+                    
                     <Route path='clientes' element={<Cliente />} />
                     <Route path='vehiculo' element={<Visualizar />} />
                     <Route path='reserva' element={

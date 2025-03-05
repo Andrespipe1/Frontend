@@ -4,30 +4,6 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const Clientes = () => {
-    const { auth } = useContext(AuthContext);
-    const [clientes, setClientes] = useState(null);
-
-    useEffect(() => {
-        const obtenerCliente = async () => {
-            try {
-                const token = localStorage.getItem("token");
-                if (!token) return;
-
-                const { data } = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/clientes`,
-                    {
-                        headers: { Authorization: `Bearer ${token}` }
-                    }
-                );
-
-                setClientes(data);
-            } catch (error) {
-                console.error("Error al obtener clientes:", error);
-            }
-        };
-
-        obtenerCliente();
-    }, []);
 
     return (
         <>       

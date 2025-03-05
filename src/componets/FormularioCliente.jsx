@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Mensaje from "./Alertas/Mensaje";
 
-export const FormularioCliente = ({clientes}) => {
+const FormularioCliente = ({clientes}) => {
 
     const navigate = useNavigate()
     const [mensaje, setMensaje] = useState({})
@@ -193,3 +193,4 @@ export const FormularioCliente = ({clientes}) => {
         </form>
     )
 }
+export default FormularioCliente
